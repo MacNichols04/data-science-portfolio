@@ -9,17 +9,7 @@ This website will document my learning and projects throughout the semester.
 ## Portfolio
 - [Blog](blog.md)
 - [Projects](projects.md)
-title: Data Science Portfolio
-description: Documenting my learning in Data Science
-theme: jekyll-theme-minimal
-logo: profile.png
-author: Your Name
-show_downloads: false
-github:
-  is_project_page: false
-social_links:
-  github: https://github.com/yourusername
-  linkedin: https://linkedin.com/in/yourprofile
+
 
 
 
