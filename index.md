@@ -9,7 +9,7 @@ This website will document my learning and projects throughout the semester.
 ## Portfolio
 - [Blog](blog.md)
 - [Projects](projects.md)
-  blog1.md
+  [Blog](blog1.md)
 
 
 
