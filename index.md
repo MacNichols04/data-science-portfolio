@@ -9,6 +9,9 @@ This website will document my learning and projects throughout the semester.
 ## Portfolio
 - [Projects](projects.md)
 -  [Blog1](blog/blog1.md)
+## Professional Links
 
+- [LinkedIn](https://www.linkedin.com/in/mac-nichols-1a6144253/)
+- [View My Resume](resume.pdf)
 
 
