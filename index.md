@@ -12,6 +12,6 @@ This website will document my learning and projects throughout the semester.
 ## Professional Links
 
 - [LinkedIn](https://www.linkedin.com/in/mac-nichols-1a6144253/)
-- [View My Resume](resume.pdf)
+- [View My Resume](Resume.pdf)
 
 
