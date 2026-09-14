@@ -4,7 +4,7 @@
 
 **What is the relationship between a college football team's recruiting strength and its on-field success among FBS teams?**
 
-A related question for this project is:
+A related question is:
 
 **Do teams with higher-rated recruiting classes tend to have higher winning percentages and stronger overall team ratings?**
 
@@ -22,7 +22,9 @@ The main research question is:
 
 A related question is whether teams with higher-rated recruiting classes tend to have higher winning percentages and stronger overall team ratings.
 
-To measure team success, I plan to examine variables such as winning percentage, point differential, and potentially a team rating such as Elo or SP+.
+For this analysis, I measure team success using two main variables: **winning percentage** and **SP+ rating**.
+
+Previous research has found a positive relationship between recruiting success and on-field performance in college football (Caro, 2012; Langelett, 2003). Research has also found that recruit quality is related to team performance even when differences between college football programs are considered (Bergman & Logan, 2016).
 
 This question is relevant because recruiting rankings are widely used by college football fans, coaches, analysts, and media organizations when discussing the future strength of programs. Comparing recruiting results with actual team performance can help show how strongly recruiting strength is associated with success on the field.
 
@@ -32,38 +34,43 @@ This question is relevant because recruiting rankings are widely used by college
 
 The data for this project comes from the **College Football Data API (CFBD)**.
 
-College Football Data provides historical information about college football, including recruiting data, game results, team information, rankings, and advanced team statistics.
+College Football Data provides historical information about college football, including recruiting data, team records, rankings, and advanced team ratings.
 
 Source: [College Football Data](https://collegefootballdata.com)
 
-I plan to collect recruiting and team performance data for multiple FBS seasons and combine the datasets for analysis.
+I collected data from the **2021, 2022, 2023, 2024, and 2025 college football seasons**.
 
-Each observation in the final dataset will represent one **team during one season**, also called a team-season observation.
+Each observation in the final dataset represents one **FBS team during one season**, also called a team-season observation.
 
-The main variables used in the analysis are:
+The team records dataset initially contained **664 FBS team-season observations**.
 
-- Team
+The recruiting dataset contained **978 observations** before being combined with the FBS team records.
+
+After merging the FBS records and recruiting data, the dataset contained **663 team-season observations**.
+
+SP+ data contained **669 observations** across the five seasons and was then merged into the main dataset.
+
+The final analysis dataset contains:
+
+- **663 rows**
+- **11 columns**
+- **0 missing values**
+
+The final variables are:
+
 - Season
-- Recruiting strength
-- Recruiting ranking or recruiting score
+- Team
+- Conference
+- Games
 - Wins
 - Losses
+- Ties
 - Winning percentage
-- Points scored
-- Points allowed
-- Point differential
-- Potential team performance rating such as Elo or SP+
+- Recruiting rank
+- Recruiting score
+- SP+ rating
 
-The final dataset contains:
-
-- **Rows:** [ADD AFTER RUNNING NOTEBOOK]
-- **Columns:** [ADD AFTER RUNNING NOTEBOOK]
-
-Missing values:
-
-**[ADD AFTER RUNNING NOTEBOOK]**
-
-The data was collected through an API rather than manually entering information or using a pre-built spreadsheet.
+The data was collected through an API rather than manually entered or taken from a pre-built spreadsheet.
 
 ---
 
@@ -75,7 +82,9 @@ The data was collected through an API rather than manually entering information 
 Recruiting strength represents the overall quality of players recruited by a college football program.
 
 **Operational definition:**  
-Recruiting strength will be measured using a team's recruiting ranking or recruiting score provided through the College Football Data API.
+Recruiting strength is measured using the **recruiting score** and **recruiting rank** provided by the College Football Data API.
+
+A higher recruiting score represents a stronger recruiting class.
 
 ---
 
@@ -85,7 +94,7 @@ Recruiting strength will be measured using a team's recruiting ranking or recrui
 Winning percentage represents the proportion of games a team wins during a season.
 
 **Operational definition:**  
-Winning percentage will be calculated by dividing a team's number of wins by its total number of games played.
+Winning percentage is calculated by dividing a team's total number of wins by its total number of games played.
 
 `Winning Percentage = Wins / Games Played`
 
@@ -94,34 +103,22 @@ Winning percentage will be calculated by dividing a team's number of wins by its
 ### Wins and Losses
 
 **Conceptual definition:**  
-Wins and losses represent the number of games a college football team won or lost during a season.
+Wins and losses represent the number of games a team won or lost during a season.
 
 **Operational definition:**  
-Wins and losses will be obtained from team season performance data collected through the College Football Data API.
+Wins and losses are taken from season-level team record data provided by the College Football Data API.
 
 ---
 
-### Point Differential
+### SP+ Rating
 
 **Conceptual definition:**  
-Point differential represents the difference between the total number of points a team scores and the total number of points scored by its opponents.
+SP+ is a numerical measure of overall team strength and performance.
 
 **Operational definition:**  
-Point differential will be calculated as:
+SP+ rating is measured using the team rating provided through the College Football Data API.
 
-`Point Differential = Points Scored - Points Allowed`
-
-A positive point differential means that a team scored more points than it allowed during the season. A negative point differential means that the team allowed more points than it scored.
-
----
-
-### Team Rating
-
-**Conceptual definition:**  
-A team rating is a numerical estimate of the overall strength of a college football team.
-
-**Operational definition:**  
-If an appropriate measure is available through the College Football Data API, a team rating such as Elo or SP+ may be used as an additional measure of on-field performance.
+A higher SP+ rating represents stronger overall team performance.
 
 ---
 
@@ -131,7 +128,9 @@ If an appropriate measure is available through the College Football Data API, a 
 Season represents the college football season in which the team's performance occurred.
 
 **Operational definition:**  
-Season will be represented using the season year provided by the College Football Data API.
+Season is represented by the year associated with each observation.
+
+The analysis includes seasons from **2021 through 2025**.
 
 ---
 
@@ -141,33 +140,41 @@ Season will be represented using the season year provided by the College Footbal
 Team represents an individual NCAA FBS college football program.
 
 **Operational definition:**  
-Teams will be identified using the program names provided by the College Football Data API.
+Teams are identified using the program names provided by the College Football Data API.
 
 ---
 
 ## 4. Data Cleaning and Preparation
 
-The recruiting data and team performance data come from different parts of the College Football Data API, so the datasets need to be cleaned and combined before analysis.
+Python and pandas were used to collect, inspect, clean, and combine the data.
 
-I will use Python and pandas to inspect, clean, and prepare the data.
+The analysis began with **664 FBS team-season records** from the College Football Data API.
 
-The main cleaning and preparation steps include:
+Recruiting data was collected separately and contained **978 observations**. The recruiting data included season, team, recruiting rank, and recruiting score.
 
-1. Importing the recruiting and team performance data from the College Football Data API.
-2. Inspecting the datasets to understand their rows, columns, and data types.
-3. Selecting the variables that are relevant to the research question.
-4. Restricting the analysis to FBS college football teams.
-5. Checking for missing values.
+The team records and recruiting datasets were merged using **team and season** as the matching variables.
+
+After this merge, **663 of the original 664 FBS team-season records remained** in the dataset.
+
+SP+ ratings were then collected separately and merged into the main dataset using team and season.
+
+The main data preparation steps included:
+
+1. Collecting team records for the 2021 through 2025 seasons.
+2. Restricting the team records to FBS programs.
+3. Selecting the variables relevant to the research question.
+4. Collecting recruiting rank and recruiting score data.
+5. Checking each dataset for missing values.
 6. Checking for duplicate observations.
-7. Making sure team names and season values match between datasets.
-8. Combining recruiting data and team performance data using team and season.
-9. Calculating winning percentage.
-10. Calculating point differential if points scored and points allowed are available.
-11. Removing or addressing observations that are missing information required for the analysis.
+7. Combining the recruiting and team record datasets using team and season.
+8. Calculating winning percentage using wins divided by games played.
+9. Collecting SP+ team ratings.
+10. Combining SP+ ratings with the main dataset.
+11. Checking the final dataset for missing values.
 
-Observations that are missing recruiting information or performance information may need to be removed because both types of information are necessary to answer the research question.
+The final dataset contains **663 observations and 11 variables**.
 
-The exact number of observations removed and the amount of missing data will be reported after the data cleaning process is completed.
+There were **no missing values in any of the final variables used in the analysis**.
 
 ---
 
@@ -175,57 +182,71 @@ The exact number of observations removed and the amount of missing data will be 
 
 ### Visualization 1: Recruiting Strength and Winning Percentage
 
-The first visualization will be a scatter plot comparing recruiting strength with season winning percentage.
+The first visualization compares **recruiting score** with **season winning percentage** for FBS teams from 2021 through 2025.
 
-Each point will represent one FBS team during one season.
+Each point represents one team during one season.
 
-**X-axis:** Recruiting strength  
-**Y-axis:** Winning percentage
+A trend line was included to make the overall relationship easier to see.
 
-This visualization will help show whether teams with stronger recruiting classes tend to win a greater percentage of their games.
+**X-axis:** Recruiting Score  
+**Y-axis:** Winning Percentage
 
-**Result:**
+![Recruiting Strength vs. Winning Percentage](recruiting_vs_winning_percentage.png)
 
-[ADD DESCRIPTION AFTER CREATING GRAPH]
+The scatter plot shows a positive relationship between recruiting strength and winning percentage. Teams with higher recruiting scores generally tended to have higher winning percentages, although there was still a large amount of variation.
+
+The correlation between recruiting score and winning percentage was **0.300**.
+
+This suggests a positive but relatively modest relationship. Stronger recruiting is associated with more winning, but recruiting strength alone does not explain most of the differences in team records.
+
+There are also teams with relatively low recruiting scores that produced strong winning percentages, as well as highly rated recruiting teams that did not produce especially strong records. This suggests that other factors also influence season outcomes.
 
 ---
 
-### Visualization 2: Recruiting Strength and Team Performance
+### Visualization 2: Recruiting Strength and SP+ Rating
 
-The second visualization will compare recruiting strength with another measure of team performance.
+The second visualization compares **recruiting score** with **SP+ rating**.
 
-Possible measures include:
+Each point again represents one FBS team during one season.
 
-- Point differential
-- Elo rating
-- SP+ rating
+A trend line was included to show the overall direction of the relationship.
 
-A trend line may also be included to make the overall relationship easier to see.
+**X-axis:** Recruiting Score  
+**Y-axis:** SP+ Rating
 
-**X-axis:** Recruiting strength  
-**Y-axis:** Team performance measure
+![Recruiting Strength vs. SP+ Rating](recruiting_vs_sp_rating.png)
 
-**Result:**
+The relationship between recruiting score and SP+ rating appears considerably stronger than the relationship between recruiting score and winning percentage.
 
-[ADD DESCRIPTION AFTER CREATING GRAPH]
+The correlation between recruiting score and SP+ rating was **0.624**.
+
+This represents a moderately strong positive relationship.
+
+Teams with stronger recruiting classes generally tended to have stronger SP+ ratings. The observations also follow the upward trend more closely than they do in the winning percentage visualization.
+
+These results suggest that recruiting strength may be more closely related to a team's overall quality than to its raw win-loss record.
 
 ---
 
 ## 6. Storytelling and Conclusions
 
-The purpose of this analysis is to determine whether stronger recruiting is associated with greater on-field success in FBS college football.
+The results show that recruiting strength is positively associated with success in college football, but the strength of that relationship depends on how success is measured.
 
-If teams with stronger recruiting classes tend to have higher winning percentages, stronger point differentials, or higher team ratings, this would suggest that recruiting strength and team success are related.
+Recruiting score had a correlation of **0.300 with winning percentage**. This means teams with stronger recruiting classes generally tended to win more games, but the relationship was not especially strong.
 
-However, this analysis cannot prove that recruiting strength directly causes teams to win more games.
+The relationship between recruiting score and SP+ rating was considerably stronger, with a correlation of **0.624**.
 
-College football performance is affected by many other factors, including coaching, player development, injuries, transfers, strength of schedule, conference strength, and game-to-game variation.
+This suggests that stronger recruiting is more closely associated with overall team quality than with a team's raw winning percentage.
 
-The visualizations and statistical results will be used to determine how strong the relationship appears to be in the data.
+One possible explanation is that winning percentage can be affected by many factors besides the overall quality of a team. Teams play different schedules, compete in different conferences, experience injuries, play close games, and may face very different levels of competition.
 
-### Final Conclusion
+SP+ is designed to represent overall team performance rather than only wins and losses. This may help explain why recruiting strength has a stronger relationship with SP+ than with winning percentage.
 
-[ADD FINAL CONCLUSION AFTER ANALYSIS]
+Overall, the results suggest that strong recruiting is an important part of college football success. Teams with stronger recruiting classes generally perform better, especially when overall team strength is considered.
+
+However, recruiting alone does not guarantee a successful season.
+
+Because this project is observational, these results should not be interpreted as proof that stronger recruiting directly causes better team performance.
 
 ---
 
@@ -233,11 +254,13 @@ The visualizations and statistical results will be used to determine how strong 
 
 There are several limitations to this analysis.
 
-First, recruiting rankings are estimates of player talent and are not perfect measurements. Players may improve or decline after entering college, and recruiting services may evaluate players differently.
+First, recruiting rankings and recruiting scores are estimates of player talent. They are not perfect measurements of how good a player will eventually become in college.
 
-Second, college football teams do not play identical schedules. Some teams face significantly stronger opponents than others. Because of this, winning percentage and point differential may not represent the same level of performance for every program.
+Some highly rated recruits may not develop as expected, while lower-rated recruits may become highly successful college players.
 
-The analysis also does not fully account for factors such as:
+Another limitation is that college football teams do not play identical schedules. Some programs play much stronger opponents than others. Because of this, winning percentage does not necessarily represent the same level of team quality for every program.
+
+This project also does not directly account for factors such as:
 
 - Coaching quality
 - Player development
@@ -250,13 +273,15 @@ The analysis also does not fully account for factors such as:
 - Player playing time
 - Players leaving early for professional football
 
-Another limitation involves the timing of recruiting classes. Players usually remain with a college football program for multiple seasons. This means that a team's performance during one season may be influenced by several previous recruiting classes rather than only one recruiting class.
+Another limitation involves the timing of recruiting classes.
 
-From an ethical perspective, recruiting ratings should also be interpreted carefully. A recruiting rating is an estimate of a player's ability at one point in time and should not be treated as a complete measure of that player's ability, value, or future performance.
+Players usually remain with a college football program for multiple seasons. This means a team's success during one season may be influenced by several previous recruiting classes rather than only the recruiting class associated with that particular year.
 
-The results of this project should therefore be interpreted as a relationship between recruiting measures and team performance rather than proof that recruiting rankings determine team success.
+From an ethical perspective, recruiting ratings should also be interpreted carefully. A recruiting rating is an estimate of an athlete's ability at a particular point in time and should not be treated as a complete measure of that player's ability, value, intelligence, effort, or future success.
 
-If I had more time and additional data, I would like to examine several previous recruiting classes together and account for strength of schedule, transfer portal activity, and coaching changes.
+The findings from this project describe relationships between recruiting measures and team performance. They should not be used to make overly broad conclusions about individual athletes.
+
+If I had more time and additional data, I would like to examine multiple previous recruiting classes together and account for variables such as strength of schedule, transfer portal activity, coaching changes, and conference strength.
 
 ---
 
@@ -269,14 +294,11 @@ https://collegefootballdata.com
 
 ### Peer-Reviewed Academic Sources
 
-**Source 1:**  
-[ADD PEER-REVIEWED SOURCE]
+Bergman, S. A., & Logan, T. D. (2016). The effect of recruit quality on college football team performance. *Journal of Sports Economics, 17*(6), 578–600. https://doi.org/10.1177/1527002514538266
 
-**Source 2:**  
-[ADD PEER-REVIEWED SOURCE]
+Caro, C. A. (2012). College football success: The relationship between recruiting and winning. *International Journal of Sports Science & Coaching, 7*(1), 139–152. https://doi.org/10.1260/1747-9541.7.1.139
 
-**Source 3:**  
-[ADD PEER-REVIEWED SOURCE]
+Langelett, G. (2003). The relationship between recruiting and team performance in Division 1A college football. *Journal of Sports Economics, 4*(3), 240–245. https://doi.org/10.1177/1527002503253478
 
 ---
 
@@ -286,6 +308,10 @@ The complete Python code used to collect, clean, analyze, and visualize the data
 
 [View the Jupyter Notebook](project1.ipynb)
 
+The analysis was completed using Python with libraries including pandas, requests, matplotlib, and NumPy.
+
 ### AI Usage Disclosure
 
-I used OpenAI ChatGPT (GPT-5.6) during this project to help interpret the assignment requirements, organize the structure of the analysis, troubleshoot Python code, and improve explanations of analytical decisions. I reviewed the suggestions and am responsible for the final code, analysis, visualizations, and written content included in this project.
+I used OpenAI ChatGPT (GPT-5.6) during this project to help interpret the assignment requirements, organize the structure of the project, troubleshoot Python code, and improve explanations of analytical decisions.
+
+I reviewed the generated suggestions and am responsible for the final code, analysis, visualizations, and written content included in this project.
