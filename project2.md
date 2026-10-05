@@ -208,7 +208,7 @@ Because of the reasons mentioned above, the model should be used as an extra ana
 
 The complete Python analysis is available in the Jupyter Notebook:
 
-[View the Project Two Jupyter Notebook](project2.ipynb)
+[View the Project Two Jupyter Notebook on GitHub](https://github.com/MacNichols04/data-science-portfolio/blob/main/project2.ipynb)
 
 The project used the `nba_api` Python package to access NBA.com statistical data.
 
