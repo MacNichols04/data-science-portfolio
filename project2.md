@@ -15,16 +15,15 @@ This problem is meaningful because NBA teams invest significant time and resourc
 
 ## Background and Context
 
-Predicting future NBA success is difficult because player development depends on many factors that are not completely captured by traditional statistics.
+It is difficult to predict what the future NBA success of a player will be since player development is influenced by a number of factors which traditional statistics do not fully take into account.
 
-Previous research has shown that past basketball performance can provide useful information about future professional success. Coates and Oguntimein (2010) studied whether college production could predict NBA career outcomes and found that some measures of college productivity were related to draft position and later professional performance.
+Research carried out in the past has demonstrated that an athlete's previous performance in basketball can offer useful insights into his or her future professional success. Coates and Oguntimein (2010) investigated whether performance in college could be used to predict the outcomes of a player's career in the NBA and discovered that certain measures of college productivity were linked to draft position and to subsequent professional performance.
 
-Moxley and Towne (2015) examined the prediction of early NBA career success and found that factors such as age, previous performance, and the quality of a player's college program helped distinguish stronger professional career trajectories. Their results also showed that statistical models could provide information beyond draft order alone.
+Moxley and Towne in their 2015 study looked at the prediction of early success in the NBA and discovered that factors like age, past performance, and the quality of the player's college program were able to differentiate between stronger and weaker professional careers. Moreover, their findings indicated that statistical models can offer information that goes beyond just draft position.
 
-Berger and Daumann (2021) studied NBA Draft Combine information and found that athletic testing can influence where players are drafted even though some combine measurements have limited ability to predict later NBA performance. This demonstrates that player evaluation involves uncertainty and that draft position should not be treated as a perfect measure of future ability.
+Berger and Daumann (2021) looked at the information from the NBA Draft Combine and discovered that athletic testing can affect the draft position of players even though certain combine figures have only a limited capacity for predicting subsequent NBA performance. This shows that assessing players involves a certain degree of uncertainty and that the draft position should not be regarded as a perfect indication of their future ability.
 
-These studies helped motivate my decision to combine rookie production, efficiency statistics, age, and draft position rather than relying on only one measure of player quality.
-
+It was these studies that led me to decide on combining a player's early-career output, his efficiency figures, age, and draft position rather than depending on just one measure of player quality.
 ## Data Description
 
 The data for this project was collected using the `nba_api` Python package, which provides access to NBA.com statistics endpoints.
@@ -188,24 +187,23 @@ The model therefore shows associations rather than proving that any individual s
 
 ## Limitations, Ethics, and Reflection
 
-One major limitation of the project is class imbalance. Only 77 of the 1,250 players became All-Stars within seven seasons. The test set contained only 15 future All-Stars, meaning that a difference of only a few predictions can noticeably change precision and recall.
+A major limitation of the project is the class imbalance since only 77 of the 1,250 players became All-Stars over a seven-season period and the test set included just 15 future All-Stars; therefore, a small number of different predictions can result in noticeable changes to both precision and recall.
 
-The project also relies primarily on traditional rookie-season statistics. NBA development depends on many factors that are not represented in the model, including injuries, coaching, team situation, defensive responsibilities, work ethic, role changes, and player development.
+The project also makes main use of the statistics collected in a player's first season. Since the model does not take into account a number of factors that affect NBA development, such as injuries, coaching, the team's situation, defensive duties, work ethic, changes in role, and player development.
 
-Several predictors also measure similar aspects of performance. This multicollinearity makes individual Logistic Regression coefficients more difficult to interpret.
+Other predictors also examine similar aspects of performance; this kind of multicollinearity means that the individual Logistic Regression coefficients are more difficult to interpret.
 
-Draft information required assumptions as well. Undrafted or nonstandard draft values were represented as 61. This allows those players to remain in the model but simplifies differences between various undrafted players.
+It was also necessary to state the assumptions pertaining to draft information, and undrafted or non-standard draft figures were shown as 61; this enabled the players to stay in the model while at the same time simplifying the differences between the various undrafted players.
 
-There was also a data-collection limitation involving some players whose All-Star endpoint did not return the expected result set. These players were treated as having no recorded All-Star seasons. This assumption should be considered when interpreting the results.
+There was also a limitation concerning the collection of data for a number of players whose All-Star endpoint did not produce the expected result set; these players were regarded as having no recorded All-Star seasons. When interpreting the results this assumption should be taken into account.
 
-Another limitation is the train/test strategy. The project used a random stratified split across players. A stronger future test could train models using older rookie classes and evaluate them only on later rookie classes. That would more closely represent making predictions about future players.
+A further limitation is the train/test strategy. In this project, a random stratified division was carried out among the players. A more effective future test would consist of training the models on the older rookie classes and then assessing them only on the later rookie classes. This approach would better simulate making predictions about future players.
 
-False positives would occur when the model predicts that a player will become an All-Star but the player does not. In a real scouting situation, overconfidence in these predictions could lead to poor personnel decisions.
+False positives happen when the model predicts that a player will be selected as an All-Star but the player actually isn't. If scouts had too much confidence in such predictions, it could result in bad personnel decisions.
 
-False negatives may be even more important because they represent players who eventually become All-Stars but were predicted not to. A team relying too heavily on such a model could overlook a valuable player.
+False negatives might be even more significant since they involve players who go on to become All-Stars but were initially predicted not to. A team that places too much trust in such a model might fail to notice a valuable player.
 
-For these reasons, the model should be used as an additional analytical tool rather than as a replacement for scouts, coaches, medical information, and other forms of player evaluation.
-
+Because of the reasons mentioned above, the model should be used as an extra analytical tool instead of taking the place of scouts, coaches, medical information, and all other methods of player evaluation.
 ## Code and Transparency
 
 The complete Python analysis is available in the Jupyter Notebook:
@@ -216,7 +214,7 @@ The project used the `nba_api` Python package to access NBA.com statistical data
 
 ### AI Usage Disclosure
 
-I used OpenAI ChatGPT (GPT-5.6) during this project to help interpret assignment requirements, create a list of the order of tasks required for the project, to keep me on a straight path, and explain coding errors . I came up with the topic, wrote my own code, I ran and reviewed the analysis, reviewed the outputs, and made all decisions regarding the models, features, interpretation, and presentation of the project.
+I used OpenAI ChatGPT (GPT-5.6) during this project to help interpret assignment requirements, create a list of the order of tasks required for the projectto keep me on a straight path, and explain coding errors . I came up with the topic, wrote my own code, I ran and reviewed the analysis, reviewed the outputs, and made all decisions regarding the models, features, interpretation, and presentation of the project.
 
 ## References
 
