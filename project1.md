@@ -306,7 +306,7 @@ Langelett, G. (2003). The relationship between recruiting and team performance i
 
 The complete Python code used to collect, clean, analyze, and visualize the data for this project is available through the project's GitHub repository.
 
-[View the Jupyter Notebook](project1.ipynb)
+[View Python Notebook](https://github.com/MacNichols04/data-science-portfolio/blob/main/project1.ipynb)
 
 The analysis was completed using Python with libraries including pandas, requests, matplotlib, and NumPy.
 
