@@ -8,7 +8,7 @@ This project examines whether stronger recruiting classes are associated with hi
 
 [View Project One](project1.md)
 
-[View Python Notebook](project1.ipynb)
+[View Python Notebook](https://github.com/MacNichols04/data-science-portfolio/blob/main/project1.ipynb)
 
 ## Project 2: Predicting Future NBA All-Stars
 
