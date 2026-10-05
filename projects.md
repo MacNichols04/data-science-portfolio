@@ -10,3 +10,10 @@ This project examines whether stronger recruiting classes are associated with hi
 
 [View Python Notebook](project1.ipynb)
 
+## Project 2: Predicting Future NBA All-Stars
+
+Can an NBA player's rookie-season statistics and draft position predict whether they will become an NBA All-Star within their first seven seasons?
+
+[View Project Two](project2.md)
+
+[View Python Notebook](project2.ipynb)
