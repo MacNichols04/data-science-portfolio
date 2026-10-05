@@ -8,7 +8,7 @@ The goal of this project is to answer the following question:
 
 This is a binary classification problem. The target variable is `future_all_star`.
 
-- `1` = the player became an NBA All-Star within the first seven seasons of their career
+- `1` = the player became an NBA All-Star within the first seven seasons of their career 
 - `0` = the player did not become an NBA All-Star within that period
 
 This problem is meaningful because NBA teams invest significant time and resources into evaluating young players. Being able to identify statistical patterns associated with future high-level players could be useful in scouting and player evaluation. However, the model in this project is intended as an analytical experiment rather than a replacement for professional scouting.
