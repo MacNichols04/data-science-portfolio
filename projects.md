@@ -16,4 +16,4 @@ Can an NBA player's rookie-season statistics and draft position predict whether 
 
 [View Project Two](project2.md)
 
-[View Python Notebook](project2.ipynb)
+[View Python Notebook](https://github.com/MacNichols04/data-science-portfolio/blob/main/project2.ipynb)
